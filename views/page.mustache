@@ -2,6 +2,15 @@
 <html>
 <head>
     <title>JIM</title>
+    <style>
+        input{
+            width: 100px;
+        }
+
+        #main{
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
     <h1> JIM - Your fitness tracker </h1>
@@ -29,8 +38,26 @@
     {{ /addExercise }}
     </div>
 
-    <div>
-        
+    <div id="main">
+        <span> {{exerciseName}} </span>
+        <form action="">
+            <label for="weight">Weight</label>
+            <input type="text" name="weight">
+
+            <label for="set1">Set #1</label>
+            <input type="text" name="reps">
+
+            <label for="set2">Set #2</label>
+            <input type="text" name="set2">
+
+            <label for="set3">Set #3</label>
+            <input type="text" name="set3">
+
+            <label for="rpe">RPE</label>
+            <input type="text" name="rpe">
+
+            <input type="submit">
+        </form>
     </div>
 </body>
 </html>
