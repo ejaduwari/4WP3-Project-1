@@ -11,6 +11,12 @@ async function makeConnection()
   })
 };
 
+async function addWorkout(variable)
+{
+    await db.run("INSERT INTO Workout VALUES (?,?,?,?,?)", 
+                [variable.weight, variable.set1, variable.set2, variable.set3, variable.rpe]);
+}
+
 async function selectExercise(variable)
 {
     //console.log(variable); // use this to ensure we are passing the right data
@@ -32,4 +38,4 @@ async function addExercise(exercise)
 
 
 
-module.exports = { makeConnection, getAll, addExercise, selectExercise };
+module.exports = { makeConnection, getAll, addExercise, selectExercise, addWorkout };

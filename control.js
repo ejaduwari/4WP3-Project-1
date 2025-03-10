@@ -14,6 +14,12 @@ async function start(){
 }
 start();
 
+app.get("/addWorkout", async function(req, res){
+    await Model.addWorkout(req.query);
+    
+    console.log(req.query)
+});
+
 app.get("/selectExercise", async function(req, res){
     //await Model.selectExercise(req.query);
     const selected = await Model.selectExercise(req.query);
