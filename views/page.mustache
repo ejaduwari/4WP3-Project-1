@@ -5,97 +5,102 @@
     <link rel="stylesheet" href="/views/index.css">
 </head>
 <body>
-    <h1> <a href="/page"> JIM </a>- Your fitness tracker </h1>
+    <div class="container">
+        <div class="center">
+            <h1> <a href="/page"> JIM </a> </h1>
+            <p>Your fitness tracker</p>
+        </div>
 
-    <div>
-        <h2>Your Workout</h2>
+        <div class="workout">
+            <h2>Your Workout</h2>
 
-        <form action ="/workoutData">
-            <select name="exercise">
-                <option value=""> Choose Exercise </option>
-                {{ #options }}
-                    <option value="{{ Exercise }}"> {{ Exercise }} </option></a>
-                {{ /options }}
-            </select> 
+            <form action ="/workoutData">
+                <select name="exercise">
+                    <option value=""> Choose Exercise </option>
+                    {{ #options }}
+                        <option value="{{ Exercise }}"> {{ Exercise }} </option></a>
+                    {{ /options }}
+                </select> 
 
-            <label for="weight">Weight:</label>
-            <input type="text" name="weight" placeholder="kgs">
+                <label for="weight">Weight:</label>
+                <input type="text" name="weight" placeholder="kgs">
 
-            <label for="set1">Set 1:</label>
-            <input type="text" name="set1" placeholder="# of reps">
+                <label for="set1">Set 1:</label>
+                <input type="text" name="set1" placeholder="# of reps">
 
-            <label for="set2">Set 2:</label>
-            <input type="text" name="set2" placeholder="# of reps">
+                <label for="set2">Set 2:</label>
+                <input type="text" name="set2" placeholder="# of reps">
 
-            <label for="set3">Set 3:</label>
-            <input type="text" name="set3" placeholder="# of reps">
+                <label for="set3">Set 3:</label>
+                <input type="text" name="set3" placeholder="# of reps">
 
-            <label for="rpe">RPE:</label>
-            <input type="text" name="rpe" placeholder="# of reps">
+                <label for="rpe">RPE:</label>
+                <input type="text" name="rpe" placeholder="# of reps">
 
-            <input type="submit">
-        </form>
-
-        <a href="/newExercise">Add Exercise</a>
-
-        {{ #addExercise }}
-            <form action="/addExercise">
-                <label for="name">Name</label>
-                <input type="text" name="name">
                 <input type="submit">
             </form>
-        {{ /addExercise }}
-    </div>   
 
-    <div>
-        <ul>
-            {{ #exerciseChoice }} <li> Please select an exercise </li> {{ /exerciseChoice }}
-            {{ #weightChoice }} <li> Weight should be a number greater than 0 </li> {{ /weightChoice }}
-            {{ #set1Choice }} <li> Set 1 should be a number greater than 0 </li> {{ /set1Choice }}
-            {{ #set2Choice }} <li> Set 2 should be a number greater than 0 </li> {{ /set2Choice }}
-            {{ #set3Choice }} <li> Set 3 should be a number greater than 0 </li> {{ /set3Choice }}
-            {{ #rpeChoice }} <li> RPE should be a number greater than 0 </li> {{ /rpeChoice }}
-        </ul>
-    </div>
+            <a href="/newExercise">Add Exercise</a>
 
-    <div id="history">
-        <h2>Recent Workout</h2>
-        <form action ="/workoutHistory">
-            <select name="exercise">
-                <option value=""> Choose Exercise </option>
-                {{ #options }}
-                    <option value="{{ Exercise }}"> {{ Exercise }} </option></a>
-                {{ /options }}
-            </select>
-            <input type="submit">
-        </form>
+            {{ #addExercise }}
+                <form action="/addExercise">
+                    <label for="name">Name</label>
+                    <input type="text" name="name">
+                    <input type="submit">
+                </form>
+            {{ /addExercise }}
+        </div>   
 
-        <table>
-            <tr>
-                <th>Exercise</th>
-                <th>Weight</th>
-                <th>Set 1</th>
-                <th>Set 2</th>
-                <th>Set 3</th>
-                <th>RPE</th>
-            </tr>
-            {{ #history }}
+        <div>
+            <ul>
+                {{ #exerciseChoice }} <li> Please select an exercise </li> {{ /exerciseChoice }}
+                {{ #weightChoice }} <li> Weight should be a number greater than 0 </li> {{ /weightChoice }}
+                {{ #set1Choice }} <li> Set 1 should be a number greater than 0 </li> {{ /set1Choice }}
+                {{ #set2Choice }} <li> Set 2 should be a number greater than 0 </li> {{ /set2Choice }}
+                {{ #set3Choice }} <li> Set 3 should be a number greater than 0 </li> {{ /set3Choice }}
+                {{ #rpeChoice }} <li> RPE should be a number greater than 0 </li> {{ /rpeChoice }}
+            </ul>
+        </div>
+
+        <div id="history">
+            <h2>Recent Workout</h2>
+            <form action ="/workoutHistory">
+                <select name="exercise">
+                    <option value=""> Choose Exercise </option>
+                    {{ #options }}
+                        <option value="{{ Exercise }}"> {{ Exercise }} </option></a>
+                    {{ /options }}
+                </select>
+                <input type="submit">
+            </form>
+
+            <table>
                 <tr>
-                    <form action="/update/{{rowid}}" method="GET">
-                        <td>{{ Exercise }}</td>
-                        <td><input type="number" name="weight" value="{{ Weight }}"></td>
-                        <td><input type="number" name="set1" value="{{ Set1 }}"></td>
-                        <td><input type="number" name="set2" value="{{ Set2 }}"></td>
-                        <td><input type="number" name="set3" value="{{ Set3 }}"></td>
-                        <td><input type="number" name="rpe" value="{{ RPE }}"></td>
-                        <td>
-                        <button type="submit">Update</button>
-                        <button type="button"><a href="/delete/{{rowid}}">Del</a></button>
-                        </td>
-                    </form>
+                    <th>Exercise</th>
+                    <th>Weight</th>
+                    <th>Set 1</th>
+                    <th>Set 2</th>
+                    <th>Set 3</th>
+                    <th>RPE</th>
                 </tr>
-            {{ /history }}
-        </table>
+                {{ #history }}
+                    <tr>
+                        <form action="/update/{{rowid}}" method="GET">
+                            <td>{{ Exercise }}</td>
+                            <td><input type="number" name="weight" value="{{ Weight }}"></td>
+                            <td><input type="number" name="set1" value="{{ Set1 }}"></td>
+                            <td><input type="number" name="set2" value="{{ Set2 }}"></td>
+                            <td><input type="number" name="set3" value="{{ Set3 }}"></td>
+                            <td><input type="number" name="rpe" value="{{ RPE }}"></td>
+                            <tr>
+                                <td><button type="submit">Update</button></td>
+                                <td><button type="button"><a href="/delete/{{rowid}}">Del</a></button></td>
+                            </tr>
+                        </form>
+                    </tr>
+                {{ /history }}
+            </table>
+        </div>
     </div>
 </body>
 </html>
