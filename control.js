@@ -15,8 +15,14 @@ async function start(){
 }
 start();
 
+app.get("/workoutHistory", async function(req, res){
+    const history = await Model.workoutHistory(req.query);
+    console.log(history);
+    const exerciseArray = await Model.getAll();
+    res.render("page", { options: exerciseArray, history: history });
+});
 
-app.get("/exerciseData", async function(req, res){
+app.get("/workoutData", async function(req, res){
 
     if((!req.query.exercise) && (!req.query.weight || !req.query.set1 || !req.query.set2 || !req.query.set3 || !req.query.rpe)){
         console.log("error");
@@ -26,7 +32,7 @@ app.get("/exerciseData", async function(req, res){
     }
 
     else{
-        await Model.exerciseData(req.query);
+        await Model.workoutData(req.query);
         const exerciseArray = await Model.getAll();
         res.render("page", { options: exerciseArray });
     }

@@ -15,6 +15,10 @@
         #history{
             margin-top: 30px;
         }
+
+        td, th, table { border: 1px solid black; }
+        td, th { padding: 5px; }
+        table { border-collapse: collapse; }
     </style>
 </head>
 <body>
@@ -23,7 +27,7 @@
     <div>
         <h2>Your Workout</h2>
 
-        <form action ="/exerciseData">
+        <form action ="/workoutData">
             <select name="exercise">
                 <option value=""> Choose Exercise </option>
                 {{ #options }}
@@ -46,7 +50,7 @@
             <label for="rpe">RPE:</label>
             <input type="text" name="rpe" placeholder="# of reps">
 
-            <input type="submit"> </br>
+            <input type="submit">
         </form>
 
         <a href="/newExercise">Add Exercise</a>
@@ -62,16 +66,36 @@
 
     <div id="history">
         <h2>Workout History</h2>
-        <form action ="/#">
+        <form action ="/workoutHistory">
             <select name="exercise">
                 <option value=""> Choose Exercise </option>
                 {{ #options }}
                     <option value="{{ Exercise }}"> {{ Exercise }} </option></a>
                 {{ /options }}
             </select>
-
             <input type="submit">
         </form>
+
+        <table>
+            <tr>
+                <th>Exercise</th>
+                <th>Weight</th>
+                <th>Set 1</th>
+                <th>Set 2</th>
+                <th>Set 3</th>
+                <th>RPE</th>
+            </tr>
+            {{ #history }}
+                <tr>
+                    <td> {{ Exercise }} </td>
+                    <td> {{ Weight }} </td>
+                    <td> {{ Set1 }} </td>
+                    <td> {{ Set2 }} </td>
+                    <td> {{ Set3 }} </td>
+                    <td> {{ RPE }} </td>
+                </tr>
+            {{ /history }}
+        </table>
     </div>
 </body>
 </html>

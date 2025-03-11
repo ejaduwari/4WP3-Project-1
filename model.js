@@ -11,7 +11,14 @@ async function makeConnection()
   })
 };
 
-async function exerciseData(variable)
+async function workoutHistory(variable){
+    const results = await db.all("SELECT * FROM Workout WHERE Exercise = ?", [variable.exercise]);
+    //console.log(variable.exercise);
+    //console.log(results);
+    return results;
+}
+
+async function workoutData(variable)
 {
     await db.run("INSERT INTO Workout VALUES (?,?,?,?,?,?)", 
                 [variable.exercise, variable.weight, variable.set1, variable.set2, variable.set3, variable.rpe]);
@@ -30,4 +37,4 @@ async function addExercise(exercise)
 
 
 
-module.exports = { makeConnection, getAll, addExercise, exerciseData };
+module.exports = { makeConnection, getAll, addExercise, workoutData, workoutHistory };
