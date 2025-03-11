@@ -11,8 +11,10 @@ async function makeConnection()
   })
 };
 
+
 async function workoutHistory(variable){
-    const results = await db.all("SELECT * FROM Workout WHERE Exercise = ?", [variable.exercise]);
+    //const results = await db.all("SELECT * FROM Workout WHERE Exercise = ?", [variable.exercise]);
+    const results = await db.all("SELECT * FROM Workout WHERE Exercise = ? ORDER BY rowid DESC LIMIT 1", [variable.exercise]);
     //console.log(variable.exercise);
     //console.log(results);
     return results;
