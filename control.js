@@ -15,10 +15,21 @@ async function start(){
 }
 start();
 
+
 app.get("/exerciseData", async function(req, res){
-    await Model.exerciseData(req.query);
-    const exerciseArray = await Model.getAll();
-    res.render("page", { options: exerciseArray });
+
+    if((!req.query.exercise) && (!req.query.weight || !req.query.set1 || !req.query.set2 || !req.query.set3 || !req.query.rpe)){
+        console.log("error");
+    }
+    else if((req.query.exercise) && (!req.query.weight || !req.query.set1 || !req.query.set2 || !req.query.set3 || !req.query.rpe)){
+        console.log("You want your history");
+    }
+
+    else{
+        await Model.exerciseData(req.query);
+        const exerciseArray = await Model.getAll();
+        res.render("page", { options: exerciseArray });
+    }
 });
 
 app.get("/addExercise", async function(req, res){
