@@ -11,18 +11,10 @@ async function makeConnection()
   })
 };
 
-async function addWorkout(variable)
+async function exerciseData(variable)
 {
-    await db.run("INSERT INTO Workout VALUES (?,?,?,?,?)", 
-                [variable.weight, variable.set1, variable.set2, variable.set3, variable.rpe]);
-}
-
-async function selectExercise(variable)
-{
-    //console.log(variable); // use this to ensure we are passing the right data
-    const results = await db.all("SELECT * FROM Exercises WHERE Exercise = ?", [variable.selected]);
-    //console.log(results); // use this to ensure we get back the right data
-    return results;
+    await db.run("INSERT INTO Workout VALUES (?,?,?,?,?,?)", 
+                [variable.exercise, variable.weight, variable.set1, variable.set2, variable.set3, variable.rpe]);
 }
 
 async function getAll()
@@ -38,4 +30,4 @@ async function addExercise(exercise)
 
 
 
-module.exports = { makeConnection, getAll, addExercise, selectExercise, addWorkout };
+module.exports = { makeConnection, getAll, addExercise, exerciseData };

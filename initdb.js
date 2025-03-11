@@ -11,6 +11,6 @@ db.serialize(function() {
 
     // create workout table
     db.run("DROP TABLE IF EXISTS Workout");
-    db.run("CREATE TABLE Workout (Weight TEXT, Set1 TEXT, Set2 REAL, Set3 REAL, RPE REAL)");
+    db.run("CREATE TABLE Workout (Exercise TEXT, Weight REAL, Set1 INTEGER, Set2 INTEGER, Set3 INTEGER, RPE INTEGER)");
 
 });

@@ -4,7 +4,7 @@
     <title>JIM</title>
     <style>
         input{
-            width: 100px;
+            width: 55px;
         }
 
         #main{
@@ -16,48 +16,43 @@
     <h1> JIM - Your fitness tracker </h1>
 
     <div>
-    <h2>Select exercise</h2>
-    <form action ="/selectExercise">
-        <select name="selected">
-            <option value=""> Choose Exercise </option>
-            {{ #options }}
-                <option value="{{ Exercise }}"> {{ Exercise }} </option></a>
-            {{ /options }}
-        </select> 
-        <input type="submit">
-    </form>
+        <h2>Your Workout</h2>
 
-    <a href="/newExercise">Add Exercise</a>
+        <form action ="/exerciseData">
+            <select name="exercise">
+                <option value=""> Choose Exercise </option>
+                {{ #options }}
+                    <option value="{{ Exercise }}"> {{ Exercise }} </option></a>
+                {{ /options }}
+            </select> 
 
-    {{ #addExercise }}
-        <form action="/addExercise">
-            <label for="name">Name</label>
-            <input type="text" name="name">
-            <input type="submit">
-        </form>
-    {{ /addExercise }}
-    </div>
+            <label for="weight">Weight:</label>
+            <input type="text" name="weight" placeholder="kgs">
 
-    <div id="main">
-        <span> {{exerciseName}} </span>
-        <form action="/addWorkout">
-            <label for="weight">Weight</label>
-            <input type="text" name="weight">
+            <label for="set1">Set 1:</label>
+            <input type="text" name="set1" placeholder="# of reps">
 
-            <label for="set1">Set #1</label>
-            <input type="text" name="set1">
+            <label for="set2">Set 2:</label>
+            <input type="text" name="set2" placeholder="# of reps">
 
-            <label for="set2">Set #2</label>
-            <input type="text" name="set2">
+            <label for="set3">Set 3:</label>
+            <input type="text" name="set3" placeholder="# of reps">
 
-            <label for="set3">Set #3</label>
-            <input type="text" name="set3">
-
-            <label for="rpe">RPE</label>
-            <input type="text" name="rpe">
+            <label for="rpe">RPE:</label>
+            <input type="text" name="rpe" placeholder="# of reps">
 
             <input type="submit">
         </form>
-    </div>
+
+        <a href="/newExercise">Add Exercise</a>
+
+        {{ #addExercise }}
+            <form action="/addExercise">
+                <label for="name">Name</label>
+                <input type="text" name="name">
+                <input type="submit">
+            </form>
+        {{ /addExercise }}
+    </div>   
 </body>
 </html>
