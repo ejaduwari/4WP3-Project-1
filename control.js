@@ -15,9 +15,16 @@ async function start(){
 }
 start();
 
+app.get("/delete/:id", async function(req,res) 
+{ 
+    await Model.deleteEmployee(req.params.id);
+    const exerciseArray = await Model.getAll();
+    res.render("page", { options: exerciseArray });
+});
+
 app.get("/workoutHistory", async function(req, res){
     const history = await Model.workoutHistory(req.query);
-    console.log(history);
+    //console.log(history);
     const exerciseArray = await Model.getAll();
     res.render("page", { options: exerciseArray, history: history });
 });

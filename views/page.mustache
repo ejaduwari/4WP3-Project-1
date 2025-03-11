@@ -65,7 +65,7 @@
     </div>   
 
     <div id="history">
-        <h2>Workout History</h2>
+        <h2>Recent Workout</h2>
         <form action ="/workoutHistory">
             <select name="exercise">
                 <option value=""> Choose Exercise </option>
@@ -93,6 +93,7 @@
                     <td> {{ Set2 }} </td>
                     <td> {{ Set3 }} </td>
                     <td> {{ RPE }} </td>
+                    <td><a href="/delete/{{rowid}}">D</a></td> 
                 </tr>
             {{ /history }}
         </table>
