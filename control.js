@@ -38,13 +38,33 @@ app.get("/workoutHistory", async function(req, res){
 });
 
 app.get("/workoutData", async function(req, res){
+    const exerciseArray = await Model.getAll();
+    const weight = Number(req.query.weight);
+    const set1 = Number(req.query.set1);
+    const set2 = Number(req.query.set2);
+    const set3 = Number(req.query.set3);
+    const rpe = Number(req.query.rpe);
 
-    if((!req.query.exercise) && (!req.query.weight || !req.query.set1 || !req.query.set2 || !req.query.set3 || !req.query.rpe)){
-        console.log("error");
+    if(!req.query.exercise){
+        res.render("page", { options: exerciseArray, exerciseChoice: true });
+    }
+    else if(!weight || isNaN(weight) || weight < 0){
+        res.render("page", { options: exerciseArray, weightChoice: true });
+    }
+    else if(!set1 || isNaN(set1) || set1 < 0){
+        res.render("page", { options: exerciseArray, set1Choice: true });
+    }
+    else if(!set2 || isNaN(set2) || set2 < 0){
+        res.render("page", { options: exerciseArray, set2Choice: true });
+    }
+    else if(!set3 || isNaN(set3) || set3 < 0){
+        res.render("page", { options: exerciseArray, set3Choice: true });
+    }
+    else if(!rpe || isNaN(rpe) || rpe < 0){
+        res.render("page", { options: exerciseArray, rpeChoice: true });
     }
     else{
         await Model.workoutData(req.query);
-        const exerciseArray = await Model.getAll();
         res.render("page", { options: exerciseArray });
     }
 });

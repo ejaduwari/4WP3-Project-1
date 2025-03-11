@@ -64,6 +64,17 @@
         {{ /addExercise }}
     </div>   
 
+    <div>
+        <ul>
+            {{ #exerciseChoice }} <li> Please select an exercise </li> {{ /exerciseChoice }}
+            {{ #weightChoice }} <li> Weight should be a number greater than 0 </li> {{ /weightChoice }}
+            {{ #set1Choice }} <li> Set 1 should be a number greater than 0 </li> {{ /set1Choice }}
+            {{ #set2Choice }} <li> Set 2 should be a number greater than 0 </li> {{ /set2Choice }}
+            {{ #set3Choice }} <li> Set 3 should be a number greater than 0 </li> {{ /set3Choice }}
+            {{ #rpeChoice }} <li> RPE should be a number greater than 0 </li> {{ /rpeChoice }}
+        </ul>
+    </div>
+
     <div id="history">
         <h2>Recent Workout</h2>
         <form action ="/workoutHistory">
