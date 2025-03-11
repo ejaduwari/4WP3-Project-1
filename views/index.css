@@ -9,10 +9,17 @@ a{
 
 input{
     width: 55px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .center a{
     color: orange;
+}
+
+img{
+    height: auto;
+    width: 50px;
 }
 
 h2{
