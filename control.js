@@ -15,6 +15,14 @@ async function start(){
 }
 start();
 
+app.get("/update/:id", async function(req,res) 
+{ 
+    //console.log(req.query);
+    await Model.updateWorkout(req.query, req.params.id);
+    const exerciseArray = await Model.getAll();
+    res.render("page", { options: exerciseArray });
+});
+
 app.get("/delete/:id", async function(req,res) 
 { 
     await Model.deleteEmployee(req.params.id);
@@ -34,10 +42,6 @@ app.get("/workoutData", async function(req, res){
     if((!req.query.exercise) && (!req.query.weight || !req.query.set1 || !req.query.set2 || !req.query.set3 || !req.query.rpe)){
         console.log("error");
     }
-    else if((req.query.exercise) && (!req.query.weight || !req.query.set1 || !req.query.set2 || !req.query.set3 || !req.query.rpe)){
-        console.log("You want your history");
-    }
-
     else{
         await Model.workoutData(req.query);
         const exerciseArray = await Model.getAll();

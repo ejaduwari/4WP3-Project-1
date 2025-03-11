@@ -87,13 +87,18 @@
             </tr>
             {{ #history }}
                 <tr>
-                    <td> {{ Exercise }} </td>
-                    <td> {{ Weight }} </td>
-                    <td> {{ Set1 }} </td>
-                    <td> {{ Set2 }} </td>
-                    <td> {{ Set3 }} </td>
-                    <td> {{ RPE }} </td>
-                    <td><a href="/delete/{{rowid}}">D</a></td> 
+                    <form action="/update/{{rowid}}" method="GET">
+                        <td>{{ Exercise }}</td>
+                        <td><input type="number" name="weight" value="{{ Weight }}"></td>
+                        <td><input type="number" name="set1" value="{{ Set1 }}"></td>
+                        <td><input type="number" name="set2" value="{{ Set2 }}"></td>
+                        <td><input type="number" name="set3" value="{{ Set3 }}"></td>
+                        <td><input type="number" name="rpe" value="{{ RPE }}"></td>
+                        <td>
+                        <button type="submit">Update</button>
+                        <button type="button"><a href="/delete/{{rowid}}">Del</a></button>
+                        </td>
+                    </form>
                 </tr>
             {{ /history }}
         </table>
